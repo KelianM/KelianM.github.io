@@ -6,51 +6,125 @@
     font-family: Arial, sans-serif;
 }
 
+/* Body */
 body {
-    line-height: 1.6;
     color: #333;
     background-color: #f9f9f9;
+    line-height: 1.6;
 }
 
-/* Header */
-header {
-    text-align: center;
-    padding: 2rem 1rem;
+/* Navigation Bar */
+nav {
     background-color: #4a90e2;
     color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 10;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header h1 {
-    font-size: 2.5rem;
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
 
-header p {
-    font-size: 1.1rem;
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
 }
 
-/* Section Styling */
-section {
-    padding: 2rem;
-    max-width: 800px;
+.nav-links a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #d3e5ff;
+}
+
+/* Social Icons in Navbar */
+.nav-social-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.nav-social-links a {
+    color: #fff;
+    font-size: 1.5rem;
+    transition: color 0.3s ease;
+}
+
+.nav-social-links a:hover {
+    color: #d3e5ff;
+}
+
+/* Sections */
+.section {
+    padding: 1rem 2rem; /* Add more padding to offset the navbar */
+    max-width: 900px;
     margin: auto;
 }
 
-section h2 {
-    border-bottom: 2px solid #4a90e2;
-    margin-bottom: 1rem;
+.section:first-of-type {
+    margin-top: 6rem; /* Fix for heading under navbar */
 }
 
-.project {
+.section h2 {
+    font-size: 2rem;
+    border-bottom: 2px solid #4a90e2;
     margin-bottom: 1.5rem;
 }
 
-.project h3 {
-    margin-bottom: 0.5rem;
+/* About Section */
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-image .profile-pic {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #4a90e2;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Social Links */
+.social-links a {
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    color: #4a90e2;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #d3e5ff;
+}
+
+/* Projects Section */
+.project {
+    margin-bottom: 1.5rem;
 }
 
 .project a {
     color: #4a90e2;
     text-decoration: none;
+    font-weight: bold;
 }
 
 .project a:hover {
@@ -79,7 +153,17 @@ section h2 {
 /* Footer */
 footer {
     text-align: center;
-    padding: 1rem;
+    padding: 1rem 2rem;
     background-color: #4a90e2;
     color: #fff;
+    margin-top: 2rem;
+}
+
+footer a {
+    color: #d3e5ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }

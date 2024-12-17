@@ -3,49 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Personal Website</title>
+    <title>Kelian Massa | AI Engineer & Researcher</title>
     <link rel="stylesheet" href="styles.css">
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous"
+    />
+
 </head>
 <body>
-    <!-- Introduction Section -->
-    <header>
-        <h1>Hi, I'm Kelian!</h1>
-        <p>Researcher | AI Engineer | Explorer of Machine Learning</p>
-        <p>Welcome to my personal website, where I share my projects, thoughts, and research.</p>
-    </header>
-
-    <!-- Projects Section -->
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Lag-Llama for Forecasting</h3>
-            <p>An efficient transformer-based time series forecasting model.</p>
-            <a href="https://github.com/your-repo" target="_blank">View on GitHub</a>
+    <!-- Navigation Bar -->
+    <nav>
+        <div class="nav-container">
+            <!-- Social Icons -->
+            <div class="nav-social-links">
+                <a href="mailto:kelianmassa@gmail.com" target="_blank">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/kelian-massa-6495a01b6" target="_blank">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+                <a href="https://github.com/KelianM" target="_blank">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+            <!-- Navigation Links -->
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#blog">Blog</a></li>
+            </ul>
         </div>
-        <div class="project">
-            <h3>Othello AlphaZero</h3>
-            <p>AlphaZero implementation for the game of Othello.</p>
-            <a href="https://github.com/Othello_AlphaZero" target="_blank">View on GitHub</a>
+    </nav>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>Kelian Massa</h2>
+                <p>
+                    I am an AI Engineer & Researcher, working on building, maintaining, and monitoring a large-scale transformer model for time-series forecasting. This work includes open-source contributions and a workshop paper at NeurIPS. I’m also deeply invested in reinforcement learning and AI Safety & Alignment, pursuing further self-studies and aiming to embark on a PhD soon.
+                </p>
+                <br/>
+                <p>
+                    My journey started with a curiosity for technology and problem-solving, leading me to complete an MEng in Computer Engineering with a focus on AI and research. I’ve since worked on projects that bridge theoretical research and practical AI applications.
+                </p>
+
+            </div>
+            <div class="about-image">
+                <img src="images/kelian.jpeg" alt="Kelian Massa" class="profile-pic">
+            </div>
         </div>
     </section>
 
-    <!-- Blog Posts Section -->
-    <section id="blog">
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2>Projects</h2>
+        <div class="project">
+            <h3>Time-Series Forecasting with Lag-Llama</h3>
+            <p>An adapted multi-frequency transformer model for retail demand forecasting. Featured at NeurIPS 2024.</p>
+            <a href="https://openreview.net/forum?id=mTCMfeK4jR" target="_blank">View Workshop Paper</a>
+        </div>
+        <div class="project">
+            <h3>Reinforcement Learning Self-Study</h3>
+            <p>Building foundational RL skills with an AlphaZero implementation for Othello.</p>
+            <a href="https://github.com/Othello_AlphaZero" target="_blank">View on GitHub</a>
+        </div>
+        <div class="project">
+            <h3>3D Semantic Segmentation</h3>
+            <p>My MEng project adapting LiDAR-based segmentation algorithms for natural domains.</p>
+            <a href="https://authors.elsevier.com/sd/article/S1047-3203(24)00066-X" target="_blank">View Journal Article</a>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="section">
         <h2>Blog Posts</h2>
         <ul>
-            <li>
-                <a href="blog1.html">Navigating the Volatile African Retail Forecasting Sector</a>
-            </li>
-            <li>
-                <a href="blog2.html">Understanding Bellman Equations for RL</a>
-            </li>
+            <li><a href="#">The Challenges of AI Safety in Real-World Applications</a></li>
+            <li><a href="#">Exploring Multi-Frequency Forecasting in Retail</a></li>
+            <li><a href="#">A Deep Dive into AlphaZero for Othello</a></li>
         </ul>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>Contact me at: <a href="mailto:your.email@example.com">your.email@example.com</a></p>
-        <p>Find me on <a href="https://www.linkedin.com/your-profile" target="_blank">LinkedIn</a> | <a href="https://github.com/your-profile" target="_blank">GitHub</a></p>
+        <p>&copy; 2024 Kelian Massa</p>
     </footer>
+
 </body>
 </html>
