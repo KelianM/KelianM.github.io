@@ -121,8 +121,36 @@ nav {
 }
 
 /* Projects Section */
+.projects-container {
+    display: flex;
+    flex-direction: column; /* Stack projects vertically */
+    gap: 2rem;
+}
+
 .project {
-    margin-bottom: 1.5rem;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.project-content {
+    display: flex;
+    justify-content: space-between; /* Push text and image to opposite sides */
+    align-items: flex-start; /* Align everything to the top */
+    gap: 1.5rem;
+}
+
+.project-text {
+    flex: 1; /* Allow text to fill remaining space */
+}
+
+.project-image {
+    height: 200px; /* Control image height */
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Scale image proportionally */
+    border-radius: 8px;
 }
 
 .project a {
