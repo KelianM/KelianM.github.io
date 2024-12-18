@@ -22,7 +22,7 @@ nav {
     top: 0;
     z-index: 10;
     padding: 1rem 2rem;
-    display: flex;
+    display: flex
     justify-content: space-between;
     align-items: center;
 }
@@ -87,13 +87,17 @@ nav {
 /* About Section */
 .about-container {
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align items to the top */
     justify-content: space-between;
     gap: 2rem;
 }
 
 .about-text {
     flex: 1;
+}
+
+.about-image {
+    padding-top: 4rem;
 }
 
 .about-image .profile-pic {
