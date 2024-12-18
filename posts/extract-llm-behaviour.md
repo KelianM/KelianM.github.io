@@ -1,6 +1,6 @@
 ## Extracting LLM Behaviours Without Prompting
 
-As mechanistic interpretability struggles to deliver high-level insights into large language models (LLMs), we are left asking: *How can we extract high-level concepts, such as behaviours, personalities, goals, or skills, from LLMs in an automated and systematic way?* This question explores not just what LLMs know but *how* they exhibit distinct behavioural patterns based on prompts and latent features.
+Deep learning often feels like alchemy—we know it works but lack understanding of why. Mechanistic interpretability seeks to reverse-engineer neural networks, uncovering their internal mechanisms. However, its focus on low-level features and circuits limits its applicability for improving model safety. To address this, we ask: How can we systematically extract high-level concepts—such as behaviours, personalities, goals, or skills—from LLMs? Understanding these concepts is crucial not only to identify what LLMs know but also to predict and control their behavioural patterns, improving alignment, reliability, and safety.
 
 One promising idea is to borrow techniques from **mutual-information (MI)-based unsupervised skill discovery**. In reinforcement learning (RL), these approaches are often used to identify latent skills or behaviours by maximising the mutual information between a sampled skill latent and the resulting state transitions. Could this method similarly be applied to LLMs to extract and condition behaviours in a structured fashion?
 
@@ -38,14 +38,14 @@ Thus, can we extract good and bad behaviours from the LLM in an unsupervised man
 2. **Weight Finetuning**: MI-based skill learners are typically used for pretraining, but here we work with a pretrained agent. How should this influence conditioning on a new latent vector? Options include:
    - Finetuning all weights: Risks overwriting pretrained knowledge.
    - Adjusting only the input embedding space: Potentially effective but vulnerable to prompt-based attacks that directly manipulate inputs.
-   - Selecting tokens from original logits: This would make the problem much more tractable, since we are only looking at model outputs. But can we obtain meangful skills just based on the logit sampling strategy?
+   - Selecting tokens from original logits: This would make the problem much more tractable, since we are only looking at model outputs. But can we obtain meaningful skills just based on the logit sampling strategy?
 
 3. **Semantic Meaningfulness**: How can we ensure discovered skills are *semantically meaningful*? For example, can we identify behavioural patterns that are:
    - Diverse and distinguishable?
    - Consistent with likely outputs from the original LLM?
    - Representing clear, meaningful behavioural classes (e.g., a skill representing "dishonest" behaviour)?
   
-Perhaps we can address this with some weight regularisation during policy conditioning to keep the new weights small. This should make the response as close as possible to the original response. However, while this might guarantee a semantically coherent answer, it doesn't necessarily mean each skill will be meaningful.
+   Perhaps we can address this with some weight regularisation during policy conditioning to keep the new weights small. This should make the response as close as possible to the original response. However, while this might guarantee a semantically coherent answer, it doesn't necessarily mean each skill will be meaningful.
 ---
 
 ### In Conclusion
