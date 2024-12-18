@@ -12,9 +12,8 @@ In unsupervised skill discovery, we begin with a *skill latent vector* \( z \), 
 
 \[ I(z; s') = H(z) - H(z | s') \]
 
-By doing so, the learned behaviours (skills) become both distinguishable and diverse.
+By doing so, the learned behaviours (skills) become both distinguishable and diverse. Similar approaches of behaviour being conditioned on some latent have been used in other paradigms of RL as well, such as:
 
-#### Analogous Approaches in RL
 - **Meta-RL**: Embedding latent context vectors to adapt policies across tasks.
 - **Goal-Conditioned RL (GCRL)**: Leveraging goal embeddings to represent target states.
 
@@ -26,61 +25,27 @@ These methods share a common goal: *extract structured representations of behavi
 #### The Hypothesis
 Pretrained LLMs, exposed to vast and diverse datasets, encode **multiple distinct behavioural patterns**. These behaviours emerge based on the **prompt structure** and conditioning. For example, imagine an LLM pretrained on data from two personalities: *"happy guy"* and *"sad guy"*. If prompted specifically, the LLM exhibits behaviour consistent with one of these personalities. However, a neutral prompt might produce an averaged response between these two extremes.
 
-The challenge becomes learning a mapping from a *latent skill vector* \( z \) to behavioural outputs such that distinct behaviours can be systematically extracted. This avoids reliance on ad-hoc prompts and instead uses structured, automated discovery.
+But what if some of these behaviours are bad, and undesirable for real-life converstations? We often can't guarantee that our training data only contains behaviours we want to reproduce, which is why techniques like RLHF exist. Techniques like systems prompts or RLHF are limited because they rely on human-defined preferences or instructions, which can be inconsistent, incomplete, and fail to address all harmful behaviours in diverse contexts.
+
+Thus, can we extract good and bad behaviours from the LLM in an unsupervised manner, avoiding human uncertainty? The challenge can be represented as learning a mapping from a *latent skill vector* \( z \) to behavioural outputs such that distinct behaviours can be systematically extracted. This avoids reliance on ad-hoc prompts and instead uses structured, automated discovery.
 
 ---
 
 ### Challenges & Open Questions
 
-1. **Large Action Space**: LLMs operate in a massive action space—continuous probabilities over tokens—making direct MI maximisation non-trivial.
-   - *Key Idea*: We cannot maximise MI arbitrarily; the output must remain **semantically consistent** with the input prompt.
+1. **Large Action Space**: LLMs operate in an immense action space—continuous probabilities over tokens—making direct MI maximisation complex. A common approach to simplify MI estimation is **Noise-Contrastive Estimation (NCE)**. However, even with a single output regressor, skills must be determined across vocabularies of tens of thousands of words, which combine into exponentially more sentences. Simplification may be necessary—perhaps narrowing the scope to the vocabulary the original LLM is likely to use (e.g., top-K sampling).
 
-2. **Weight Finetuning**: Should conditioning on a new latent vector involve:
-   - Finetuning all weights?
-   - Adjusting only the input embedding space?
-   - Selecting tokens from the original logits?
+2. **Weight Finetuning**: MI-based skill learners are typically used for pretraining, but here we work with a pretrained agent. How should this influence conditioning on a new latent vector? Options include:
+   - Finetuning all weights: Risks overwriting pretrained knowledge.
+   - Adjusting only the input embedding space: Potentially effective but vulnerable to prompt-based attacks that directly manipulate inputs.
+   - Selecting tokens from original logits: This would make the problem much more tractable, since we are only looking at model outputs. But can we obtain meangful skills just based on the logit sampling strategy?
 
-   Each approach has distinct implications:
-   - Full finetuning risks overwriting pretrained knowledge.
-   - Embedding-only finetuning may enable minimal deviation while conditioning on latent behaviours.
-   - Logit-based selection aligns with empowerment principles—maximising mutual information under a conditioned policy.
-
-3. **Avoiding Trivial Solutions**: How do we prevent latent skills that are trivially distinguishable but not diverse or meaningful?
-   - *Entropy Regularisation*: Maximise entropy over logits to encourage diverse outputs.
-   - *Weight Regularisation*: Constrain post-conditioning weight changes to ensure the model remains close to its pretrained state.
-   
-4. **Efficient MI Estimation**: Measuring MI is computationally expensive. Can we use contrastive methods such as **Noise-Contrastive Estimation (NCE)**?
-   - Positive samples: Outputs conditioned on the same skill.
-   - Negative samples: Outputs conditioned on different skills.
-
-5. **Semantic Meaningfulness**: What guarantees that the discovered skills are *semantically meaningful*? For instance, can we identify behavioural patterns that are:
-   - Diverse & distinguishable?
-   - High in mutual information?
-   - Minimal in deviation from pretrained outputs?
-
----
-
-### A Practical Framework
-The theory can be formalised as follows:
-
-1. **Skill Latent Vector**: Introduce a latent vector \( z \) sampled from a fixed distribution.
-2. **Behavioural Conditioning**: Condition the LLM on \( z \) such that \( I(z; y) \) is maximised, where \( y \) is the model's output.
-3. **Regularisation**: Include constraints to:
-   - Minimise deviation from the original pretrained outputs (e.g., weight regularisation).
-   - Encourage output diversity (e.g., entropy maximisation).
-4. **Efficient MI Maximisation**: Use NCE to estimate MI between skills and outputs efficiently:
-   - Positive pairs: Outputs from the same skill latent.
-   - Negative pairs: Outputs from different skill latents.
-
-By doing so, the LLM can be systematically probed to extract behavioural dimensions encoded in its latent space.
-
----
-
-### Simplified Approach: Conditioned Decoder
-An alternative, simpler strategy involves introducing a **conditioned decoder**:
-- Modify the decoding process to incorporate skill latents \( z \) while ensuring the output logits remain as close as possible to the original outputs.
-- This maintains semantic consistency while allowing latent skill discovery.
-
+3. **Semantic Meaningfulness**: How can we ensure discovered skills are *semantically meaningful*? For example, can we identify behavioural patterns that are:
+   - Diverse and distinguishable?
+   - Consistent with likely outputs from the original LLM?
+   - Representing clear, meaningful behavioural classes (e.g., a skill representing "dishonest" behaviour)?
+  
+Perhaps we can address this with some weight regularisation during policy conditioning to keep the new weights small. This should make the response as close as possible to the original response. However, while this might guarantee a semantically coherent answer, it doesn't necessarily mean each skill will be meaningful.
 ---
 
 ### In Conclusion
