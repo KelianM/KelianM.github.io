@@ -1,0 +1,82 @@
+/* General Styling for Markdown Content */
+#blog-content {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    padding: 1rem;
+}
+
+/* Headings */
+#blog-content h1,
+#blog-content h2,
+#blog-content h3,
+#blog-content h4,
+#blog-content h5,
+#blog-content h6 {
+    margin: 1.5rem 0 0.5rem;
+    font-weight: bold;
+    line-height: 1.4;
+}
+
+/* Paragraphs */
+#blog-content p {
+    margin: 0.5rem 0;
+}
+
+/* Lists */
+#blog-content ul,
+#blog-content ol {
+    padding-left: 2rem; /* Adds indentation */
+    margin: 1rem 0;
+}
+
+/* List Items */
+#blog-content li {
+    margin-bottom: 0.5rem;
+}
+
+/* Blockquotes */
+#blog-content blockquote {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+    border-left: 4px solid #ddd;
+    color: #555;
+    font-style: italic;
+}
+
+/* Code Blocks */
+#blog-content pre {
+    background: #f4f4f4;
+    padding: 1rem;
+    overflow-x: auto;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.95rem;
+    margin: 1rem 0;
+}
+
+#blog-content code {
+    background: #f4f4f4;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.95rem;
+    color: #c7254e;
+}
+
+/* Horizontal Rules */
+#blog-content hr {
+    border: 0;
+    border-top: 1px solid #ddd;
+    margin: 1.5rem 0;
+}
+
+/* Links */
+#blog-content a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+#blog-content a:hover {
+    text-decoration: underline;
+}
