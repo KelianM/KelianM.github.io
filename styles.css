@@ -52,35 +52,6 @@ nav {
     z-index: 15; /* Ensure it's above the dropdown menu */
 }
 
-/* Responsive Styles for narrow screens*/
-@media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        flex-direction: column;
-        background-color: #4a90e2;
-        position: absolute;
-        top: 100%;
-        right: 0.5rem;
-        width: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        padding: 0rem 0.5rem;
-        z-index: 10;
-    }
-
-    .nav-links.show {
-        display: flex;
-    }
-
-    .nav-links li {
-        margin: 0.5rem 0;
-    }
-
-    .dropdown-toggle {
-        display: block;
-    }
-}
-
 .nav-links a {
     color: #fff;
     text-decoration: none;
@@ -134,7 +105,7 @@ nav {
 }
 
 .about-text {
-    flex: 1;
+    flex: 1 1 100%; /* Take full width on small screens */
 }
 
 .about-image {
@@ -143,8 +114,8 @@ nav {
 }
 
 .about-image .profile-pic {
-    width: 220px;
-    height: 220px;
+    max-width: 220px;
+    max-height: 220px;
     border-radius: 50%;
     border: 4px solid #4a90e2;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
@@ -189,7 +160,10 @@ nav {
 }
 
 .project-image {
-    height: 200px; /* Control image height */
+    /* Control image height */
+    max-height: 220px;
+    height: 20vw;
+    min-height: 128px;
     width: auto; /* Maintain aspect ratio */
     object-fit: contain; /* Scale image proportionally */
     border-radius: 8px;
@@ -240,4 +214,46 @@ footer a {
 
 footer a:hover {
     text-decoration: underline;
+}
+
+/* Tablet and lower */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background-color: #4a90e2;
+        position: absolute;
+        top: 100%;
+        right: 0.5rem;
+        width: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 0rem 0.5rem;
+        z-index: 10;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 0.5rem 0;
+    }
+
+    .dropdown-toggle {
+        display: block;
+    }
+
+    .about-container {
+        flex-direction: column;
+    }
+
+    .about-image {
+        padding: 0rem 2rem;
+        align-self: center;    
+  }
+
+    .project-content {
+        flex-direction: column;
+    }
 }
