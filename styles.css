@@ -162,6 +162,18 @@ nav {
 .project-image {
     /* Control image height */
     max-height: 220px;
+    max-width: 320px;
+    height: 20vw;
+    min-height: 128px;
+    width: auto; /* Maintain aspect ratio */
+    object-fit: contain; /* Scale image proportionally */
+    border-radius: 8px;
+}
+
+.project-image.narrow {
+    /* Control image height */
+    max-height: 220px;
+    max-width: 250px;
     height: 20vw;
     min-height: 128px;
     width: auto; /* Maintain aspect ratio */
