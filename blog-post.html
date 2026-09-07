@@ -3,9 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Post</title>
+    <title>Blog Post | Kelian Massa</title>
+    <meta name="theme-color" content="#04060d">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="blog-styles.css">
+    <!-- Fonts (Ubuntu family, as shipped with Endless Sky) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap"
+    />
     <!-- Icons -->
     <link
         rel="stylesheet"
@@ -19,11 +27,23 @@
     </script>
 </head>
 <body>
+    <!-- Starfield backdrop -->
+    <canvas class="starfield" aria-hidden="true"></canvas>
+
     <nav>
-        <div class="nav-social-links">
-            <a href="index.html">
-            <i class="fa-solid fa-home"></i>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-mark">&#9664;</span>
+                <span>Kelian Massa</span>
+                <span class="brand-role">Return to port</span>
             </a>
+            <div class="nav-right">
+                <div class="nav-social-links">
+                    <a href="index.html" aria-label="Home">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                </div>
+            </div>
         </div>
     </nav>
 
@@ -31,16 +51,26 @@
         <!-- Blog content will be dynamically loaded here -->
     </section>
 
+    <footer>
+        <p>&copy; 2026 Kelian Massa</p>
+    </footer>
+
+    <script src="starfield.js"></script>
     <script>
         // Function to fetch and render a markdown file passed via the query string
         const params = new URLSearchParams(window.location.search);
         const markdownFile = params.get('file'); // e.g., blog-post-1.md
 
-        if (markdownFile) {
+        // Only load local posts, never an arbitrary path from the query string.
+        const isSafeName = /^[A-Za-z0-9._-]+\.md$/.test(markdownFile || '');
+
+        if (markdownFile && isSafeName) {
             fetch(`posts/${markdownFile}`)
                 .then(response => response.text())
                 .then(markdown => {
                     document.getElementById('blog-content').innerHTML = marked.parse(markdown);
+                    const heading = document.querySelector('#blog-content h1, #blog-content h2');
+                    if (heading) document.title = `${heading.textContent} | Kelian Massa`;
                 })
                 .catch(err => console.error('Error loading blog post:', err));
         } else {
